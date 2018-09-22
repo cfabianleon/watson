@@ -1,0 +1,6 @@
+---
+applications:
+ - name: watsonServicesforNode
+   random-route: true
+   memory: 1000M
+   health-check-type: port
