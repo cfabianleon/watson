@@ -8,8 +8,17 @@ var vrecognitionRouter = require('./routes/vrecognition');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var toneRouter = require('./routes/tone');
+var imagenes = require('./routes/imagenes');
+
 
 var app = express();
+//CORS
+app.use(function (req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    res.header("Access-Control-Allow-Methods", "POST", "GET", "PUT", "DELETE", "OPTIONS");
+    next();
+});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -23,6 +32,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 //routes
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/imagenes', imagenes);
 app.use('/vrecognition', vrecognitionRouter);
 app.use('/toneanalyzer', toneRouter);
 

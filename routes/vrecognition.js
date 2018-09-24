@@ -66,26 +66,22 @@ router.post("/", upload.single("image"), (req, res, next) => {
 
     visualRecognition.classify(params, function(err, response1) {
       if (err) {
-        console.log(err);
-        res.json({ error: err });
+        res.json({
+            'error': err
+        })
+        res.json({ 'error': err });
       } else {
         this.recognition = response1;
-        // var result = response.images[0].classifiers[0].classes;
       }
-      
-      //   res.json(response);
     });
 
     visualRecognition.detectFaces(params2, function(err, response2) {
       if (err) console.log(err);
       else 
-      console.log(this.recognition);
-        res.json({ 'resp': this.recognition,
-    'resp2': response2});
-
-      //   console.log(unir+ "asd");
-      // res.json(response);
+        res.json({ 'modelo_1': this.recognition,
+                    'modelo_2': response2});
     });
+
   } else {
     res.json({
       error: "Hubo un error al subir los archivos, por favor intente nuevamente"
